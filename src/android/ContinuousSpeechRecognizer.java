@@ -78,6 +78,7 @@ public class ContinuousSpeechRecognizer extends CordovaPlugin {
             }
         });
         setStreamVolumeBack();
+		this.callbackContext.success("ok");
     }
 
     /**
