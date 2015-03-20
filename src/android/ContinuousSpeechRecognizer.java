@@ -48,6 +48,8 @@ public class ContinuousSpeechRecognizer extends CordovaPlugin {
             startSpeechRecognitionActivity(args);     
         } else if ("getSupportedLanguages".equals(action)) {
             getSupportedLanguages();
+		} else if ("stopRecognize".equals(action)) {
+            stopSpeechRecognitionActivity();
         } else {
             this.callbackContext.error("Unknown action: " + action);
             isValidAction = false;
@@ -62,6 +64,16 @@ public class ContinuousSpeechRecognizer extends CordovaPlugin {
         Intent detailsIntent = new Intent(RecognizerIntent.ACTION_GET_LANGUAGE_DETAILS);
         cordova.getActivity().sendOrderedBroadcast(detailsIntent, null, languageDetailsChecker, null, Activity.RESULT_OK, null, null);
         
+    }
+	
+	 private void stopSpeechRecognitionActivity() {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            public void run() {
+                sr.stopListening();
+				sr.cancel();
+            }
+        });
+        setStreamVolumeBack();
     }
 
     /**
