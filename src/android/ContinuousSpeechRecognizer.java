@@ -67,7 +67,7 @@ public class ContinuousSpeechRecognizer extends CordovaPlugin {
     }
 	
 	@Override
-	public void stopSpeechRecognitionActivity() {
+	private void stopSpeechRecognitionActivity() {
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
                 if(sr != null) {
