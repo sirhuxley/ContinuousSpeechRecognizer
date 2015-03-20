@@ -45,6 +45,10 @@ ContinuousSpeechRecognizer.prototype.getSupportedLanguages = function(successCal
     return cordova.exec(successCallback, errorCallback, "ContinuousSpeechRecognizer", "getSupportedLanguages", []);
 };
 
+ContinuousSpeechRecognizer.prototype.stopRecognize = function(successCallback, errorCallback) {
+    return cordova.exec(successCallback, errorCallback, "ContinuousSpeechRecognizer", "stopRecognize", []);
+};
+
 /**
  * Export
  */
