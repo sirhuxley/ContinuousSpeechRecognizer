@@ -106,7 +106,7 @@ Example
         </script>
 
         <button onclick="recognizeSpeech();">Start recognition</button>
-		<button onclick="recognizeSpeechStop();">Start recognition</button>
+		<button onclick="recognizeSpeechStop();">Stop recognition</button>
         <button onclick="getSupportedLanguages();">Get Supported Languages</button>
     </body>
 </html>
