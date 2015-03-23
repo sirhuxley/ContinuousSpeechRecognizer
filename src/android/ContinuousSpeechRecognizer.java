@@ -70,9 +70,10 @@ public class ContinuousSpeechRecognizer extends CordovaPlugin {
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
                 if(sr != null) {
-                    sr.cancel();
-                    sr.destroy();
-                    sr = null;
+                    //sr.cancel();
+                    //sr.destroy();
+                    //sr = null;
+					 sr.stopListening();
                 }
             }
         });
