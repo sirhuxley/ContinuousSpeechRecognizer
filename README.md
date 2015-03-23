@@ -83,6 +83,14 @@ Example
                     alert("Error message: " + errorMessage);
                 }, maxMatches, language);
             }
+			
+			function recognizeSpeechStop(){
+				window.continuoussr.stopRecognize(function(result){
+                    alert(result);
+                }, function(errorMessage){
+                    alert("Error message: " + errorMessage);
+                });
+			}
 
             // Show the list of the supported languages
             function getSupportedLanguages() {
@@ -98,6 +106,7 @@ Example
         </script>
 
         <button onclick="recognizeSpeech();">Start recognition</button>
+		<button onclick="recognizeSpeechStop();">Start recognition</button>
         <button onclick="getSupportedLanguages();">Get Supported Languages</button>
     </body>
 </html>
