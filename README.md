@@ -64,7 +64,7 @@ Example
     <head>
         <meta charset="utf-8">
         <title>Continuous Speech Recognizer</title>
-        <script src="cordova.js"></script>
+        <script src="continuoussr.js"></script>
     </head>
     <body>
         <script type="text/javascript">
