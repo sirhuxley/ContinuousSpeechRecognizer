@@ -58,6 +58,7 @@ public class ContinuousSpeechRecognizer extends CordovaPlugin {
         } 
 		else if ("pauseRecognize".equals(action)) {
 			pauseSpeechRecognitionActivity();
+		}
 		else {
             this.callbackContext.error("Unknown action: " + action);
             isValidAction = false;
