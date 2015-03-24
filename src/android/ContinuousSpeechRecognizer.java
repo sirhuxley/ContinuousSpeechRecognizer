@@ -69,11 +69,14 @@ public class ContinuousSpeechRecognizer extends CordovaPlugin {
 	private void stopSpeechRecognitionActivity() {
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
+				/*
                 if(sr != null) {
                     sr.cancel();
                     sr.destroy();
                     sr = null;
                 }
+			*/
+				sr.stopListening();
             }
         });
         setStreamVolumeBack();
@@ -103,7 +106,8 @@ public class ContinuousSpeechRecognizer extends CordovaPlugin {
         }
 
         intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        //intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+		intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, language);
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,"voice.recognition.test");
 		maxMatches = 1;
