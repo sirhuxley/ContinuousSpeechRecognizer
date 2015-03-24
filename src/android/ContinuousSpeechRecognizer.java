@@ -46,12 +46,20 @@ public class ContinuousSpeechRecognizer extends CordovaPlugin {
         this.callbackContext = callbackContext;
         if ("startRecognize".equals(action)) {
             startSpeechRecognitionActivity(args);     
-        } else if ("getSupportedLanguages".equals(action)) {
+        } 
+		else if ("getSupportedLanguages".equals(action)) {
             getSupportedLanguages();
-		} else if ("stopRecognize".equals(action)) {
+		} 
+		else if ("stopRecognize".equals(action)) {
             stopSpeechRecognitionActivity();
-        } else {
-            this.callbackContext.error("Unknown action2: " + action);
+		} 
+		else if ("resumeRecognize".equals(action)) {
+			resumeSpeechRecognitionActivity();
+        } 
+		else if ("pauseRecognize".equals(action)) {
+			pauseSpeechRecognitionActivity();
+		else {
+            this.callbackContext.error("Unknown action: " + action);
             isValidAction = false;
         }       
         return isValidAction;
@@ -69,18 +77,48 @@ public class ContinuousSpeechRecognizer extends CordovaPlugin {
 	private void stopSpeechRecognitionActivity() {
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
-				/*
                 if(sr != null) {
                     sr.cancel();
                     sr.destroy();
                     sr = null;
                 }
-			*/
-				sr.stopListening();
+				else{
+					this.callbackContext.error("No speechRecognizer started");
+				}
             }
         });
         setStreamVolumeBack();
-		this.callbackContext.success("ok");
+		this.callbackContext.success("stopped");
+    }
+	
+	private void pauseSpeechRecognitionActivity() {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            public void run() {
+                if(sr != null) {
+					sr.stopListening();
+                }
+				else{
+					this.callbackContext.error("No speechRecognizer started");
+				}
+            }
+        });
+        setStreamVolumeBack();
+		this.callbackContext.success("paused");
+    }
+	
+	private void resumeSpeechRecognitionActivity() {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            public void run() {
+                if(sr != null) {
+					sr.startListening();
+                }
+				else{
+					this.callbackContext.error("No speechRecognizer started");
+				}
+            }
+        });
+        muteStreamVolume();
+		this.callbackContext.success("resumed");
     }
 
     /**
@@ -107,7 +145,6 @@ public class ContinuousSpeechRecognizer extends CordovaPlugin {
 
         intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-		//intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, language);
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,"voice.recognition.test");
 		maxMatches = 1;

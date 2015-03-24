@@ -45,8 +45,34 @@ ContinuousSpeechRecognizer.prototype.getSupportedLanguages = function(successCal
     return cordova.exec(successCallback, errorCallback, "ContinuousSpeechRecognizer", "getSupportedLanguages", []);
 };
 
+/**
+ * Destroys and stops the speechRecognizer completely
+ *
+ * @param successCallback
+ * @param errorCallback
+*/
 ContinuousSpeechRecognizer.prototype.stopRecognize = function(successCallback, errorCallback) {
     return cordova.exec(successCallback, errorCallback, "ContinuousSpeechRecognizer", "stopRecognize", []);
+};
+
+/**
+ * Pauses the speechRecognizer temporarily
+ *
+ * @param successCallback
+ * @param errorCallback
+*/
+ContinuousSpeechRecognizer.prototype.pauseRecognize = function(successCallback, errorCallback) {
+    return cordova.exec(successCallback, errorCallback, "ContinuousSpeechRecognizer", "pauseRecognize", []);
+};
+
+/**
+ * Resumes the speechRecognizer
+ * 
+ * @param successCallback
+ * @param errorCallback
+*/
+ContinuousSpeechRecognizer.prototype.resumeRecognize = function(successCallback, errorCallback) {
+    return cordova.exec(successCallback, errorCallback, "ContinuousSpeechRecognizer", "resumeRecognize", []);
 };
 
 /**
