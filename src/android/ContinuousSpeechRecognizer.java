@@ -103,9 +103,7 @@ public class ContinuousSpeechRecognizer extends CordovaPlugin {
 	private void resumeSpeechRecognitionActivity() {
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
-                //if(sr != null) {
-					sr.startListening(intent);
-                //}
+                sr.startListening(intent);
             }
         });
         muteStreamVolume();
