@@ -151,6 +151,12 @@ public class ContinuousSpeechRecognizer extends CordovaPlugin {
         });
         
         mAudioManager = (AudioManager) cordova.getActivity().getSystemService(Context.AUDIO_SERVICE);
+		//test bluetooth
+		audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
+		audioManager.startBluetoothSco();
+		audioManager.setBluetoothScoOn(true);
+		//end bluetooth test
+		
         mStreamVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
         muteStreamVolume();
     }
@@ -192,6 +198,11 @@ public class ContinuousSpeechRecognizer extends CordovaPlugin {
             }
         });
         setStreamVolumeBack();
+		//test bluetooth
+		audioManager.setMode(AudioManager.MODE_NORMAL);
+		audioManager.stopBluetoothSco();
+		audioManager.setBluetoothScoOn(false);
+		//end bluetooth
     }
 
     private void muteStreamVolume() {
