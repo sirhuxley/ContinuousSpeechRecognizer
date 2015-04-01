@@ -152,7 +152,7 @@ public class ContinuousSpeechRecognizer extends CordovaPlugin {
         
         mAudioManager = (AudioManager) cordova.getActivity().getSystemService(Context.AUDIO_SERVICE);
 		//test bluetooth
-		mAudioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
+		mAudioManager.setMode(AudioManager.MODE_IN_CALL);
 		mAudioManager.startBluetoothSco();
 		mAudioManager.setBluetoothScoOn(true);
 		//end bluetooth test
